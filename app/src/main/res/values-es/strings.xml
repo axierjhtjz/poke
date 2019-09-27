@@ -1,0 +1,4 @@
+<resources>
+    <!-- HTTP ERRORS -->
+    <string name="http_generic_error">Hubo un problema al realizar la petición http, intentalo de nuevo más tarde</string>
+</resources>

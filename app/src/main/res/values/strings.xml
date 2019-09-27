@@ -1,0 +1,4 @@
+<resources>
+    <!-- HTTP ERRORS -->
+    <string name="http_generic_error">There was an error trying to request data from the server, please try again later</string>
+</resources>

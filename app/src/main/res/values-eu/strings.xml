@@ -1,0 +1,4 @@
+<resources>
+    <!-- HTTP ERRORS -->
+    <string name="http_generic_error">Serbitzariarekin arazo bat aurkitu da, mesedez, geroago saiatu</string>
+</resources>
