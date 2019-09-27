@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.axier.poke.R
+import com.axier.poke.common.prettify
 import com.axier.poke.data.entities.pokemon.PokemonEntity
 import java.util.*
 
@@ -23,7 +24,7 @@ class PokemonAdapter (private val elements: LinkedList<PokemonEntity.PokemonResu
         holder.rootLayout?.setOnClickListener {
             callback.onItemClick(pokemon)
         }
-        holder.pokemonName?.text = pokemon.name
+        holder.pokemonName?.text = pokemon.name.prettify()
     }
 
     override fun getItemCount() = elements.size

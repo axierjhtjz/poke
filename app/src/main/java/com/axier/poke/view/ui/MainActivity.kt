@@ -1,5 +1,6 @@
 package com.axier.poke.view.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +11,12 @@ import com.axier.poke.common.mapToEntity
 import com.axier.poke.data.api.ServiceGenerator
 import com.axier.poke.data.api.pokemon.PokemonApi
 import com.axier.poke.data.entities.pokemon.PokemonEntity
+import com.axier.poke.view.BaseActivity
 import com.axier.poke.view.adapter.PokemonAdapter
 import org.jetbrains.anko.doAsync
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BaseActivity {
 
     private var adapter: PokemonAdapter? = null
     private lateinit var pokemonList: RecyclerView
@@ -31,7 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         adapter = PokemonAdapter(LinkedList(), this, object : PokemonAdapter.OnItemClickListener {
             override fun onItemClick(pokemonResult: PokemonEntity.PokemonResult) {
-
+                val intent = Intent(this@MainActivity, PokemonDetailActivity::class.java)
+                intent.putExtra("pokemon_name", pokemonResult.name)
+                startActivity(intent)
             }
         })
         pokemonList.adapter = adapter

@@ -4,7 +4,35 @@ import com.axier.poke.data.entities.BaseEntity
 
 sealed class PokemonEntity : BaseEntity() {
 
+    data class PokemonList(
+        var count: Int,
+        var next: String?,
+        var previous: String?,
+        var results: List<PokemonResult>?
+    ): PokemonEntity()
+
     data class PokemonResult (
+        val name: String
+    ): PokemonEntity() {
+        var url: String? = null
+    }
+
+    data class Pokemon(
+        var id: Int
+    ): PokemonEntity() {
+        var name: String? = null
+        var baseExperience: Int? = null
+        var height: Int? = null
+        var weight: Int? = null
+        var types: List<PokemonType>? = null
+    }
+
+    data class PokemonType(
+        var slot: Int,
+        var type: Type?
+    ): PokemonEntity()
+
+    data class Type(
         val name: String
     ): PokemonEntity() {
         var url: String? = null
