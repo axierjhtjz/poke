@@ -3,4 +3,10 @@
     <string name="http_generic_error">Serbitzariarekin arazo bat aurkitu da, mesedez, geroago saiatu</string>
     <!-- menu -->
     <string name="search">bilatu</string>
+    <!-- pokemon -->
+    <string name="pokemon_height">Altuera: %1$d</string>
+    <string name="pokemon_weight">Pisua: %1$d</string>
+    <string name="pokemon_base_ext">Oin esp: %1$d</string>
+    <string name="pokemon_types">Motak: %1$s</string>
+    <string name="pokemon_moves">Mugimenduak:</string>
 </resources>

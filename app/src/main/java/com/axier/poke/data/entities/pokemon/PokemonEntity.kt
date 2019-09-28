@@ -25,7 +25,28 @@ sealed class PokemonEntity : BaseEntity() {
         var height: Int? = null
         var weight: Int? = null
         var types: List<PokemonType>? = null
+        var sprites: PokemonSprite? = null
+        var moves: List<PokemonMove>? = null
     }
+
+    data class PokemonMove(
+        var move: Move
+    ): PokemonEntity()
+
+    data class Move(
+        var name: String
+    ): PokemonEntity()
+
+    data class PokemonSprite(
+        var backDefault: String?,
+        var backFemale: String?,
+        var backShiny: String?,
+        var backShinyFemale: String?,
+        var frontDefault: String?,
+        var frontFemale: String?,
+        var frontShiny: String?,
+        var frontShinyFemale: String?
+    ): PokemonEntity()
 
     data class PokemonType(
         var slot: Int,

@@ -35,6 +35,8 @@ fun PokemonApi.Dto.Pokemon.mapToEntity(): PokemonEntity.Pokemon {
     pokemon.height = height
     pokemon.weight = weight
     pokemon.types = types?.map { it.mapToEntity()}
+    pokemon.sprites = sprites?.mapToEntity()
+    pokemon.moves = moves?.map { it.mapToEntity() }
     return pokemon
 }
 
@@ -44,7 +46,9 @@ fun PokemonEntity.Pokemon.mapEntityToDTO() = PokemonApi.Dto.Pokemon (
     baseExperience = baseExperience,
     height = height,
     weight = weight,
-    types = types?.map { it.mapEntityToDTO() }
+    types = types?.map { it.mapEntityToDTO() },
+    sprites = sprites?.mapEntityToDTO(),
+    moves = moves?.map { it.mapEntityToDTO() }
 )
 
 fun PokemonApi.Dto.PokemonType.mapToEntity() = PokemonEntity.PokemonType(
@@ -66,4 +70,42 @@ fun PokemonApi.Dto.Type.mapToEntity(): PokemonEntity.Type {
 fun PokemonEntity.Type.mapEntityToDTO() = PokemonApi.Dto.Type(
     name = name,
     url = url
+)
+
+fun PokemonApi.Dto.PokemonSprite.mapToEntity()= PokemonEntity.PokemonSprite(
+    backDefault = backDefault,
+    backFemale = backFemale,
+    backShiny = backShiny,
+    backShinyFemale = backShinyFemale,
+    frontDefault = frontDefault,
+    frontFemale = frontFemale,
+    frontShiny = frontShiny,
+    frontShinyFemale = frontShinyFemale
+)
+
+fun PokemonEntity.PokemonSprite.mapEntityToDTO() = PokemonApi.Dto.PokemonSprite(
+    backDefault = backDefault,
+    backFemale = backFemale,
+    backShiny = backShiny,
+    backShinyFemale = backShinyFemale,
+    frontDefault = frontDefault,
+    frontFemale = frontFemale,
+    frontShiny = frontShiny,
+    frontShinyFemale = frontShinyFemale
+)
+
+fun PokemonApi.Dto.PokemonMove.mapToEntity()= PokemonEntity.PokemonMove(
+    move = move.mapToEntity()
+)
+
+fun PokemonEntity.PokemonMove.mapEntityToDTO() = PokemonApi.Dto.PokemonMove(
+    move = move.mapEntityToDTO()
+)
+
+fun PokemonApi.Dto.Move.mapToEntity()= PokemonEntity.Move(
+    name = name
+)
+
+fun PokemonEntity.Move.mapEntityToDTO() = PokemonApi.Dto.Move(
+    name = name
 )

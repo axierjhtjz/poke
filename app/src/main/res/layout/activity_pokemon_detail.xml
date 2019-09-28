@@ -9,22 +9,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginLeft="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_arrow_back"
-            android:scaleType="centerCrop"
             android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_arrow_back" />
 
         <View
             android:layout_width="20dp"
@@ -49,18 +50,113 @@
     <ScrollView
         android:id="@+id/screen"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_centerInParent="true">
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:background="@color/pokedex_grey"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/pokedex_grey">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/pokemon_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/montserrat" />
+                android:fontFamily="@font/montserrat"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                tools:text="Bulbasaur" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/pokedex_black">
+
+                <ImageView
+                    android:id="@+id/pokemon_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/pokedex_black"
+                    android:padding="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pokemon_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="15sp"
+                        android:textColor="@color/pokedex_white"
+                        tools:text="Altura: 120cm"/>
+                    <TextView
+                        android:id="@+id/pokemon_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="15sp"
+                        android:textColor="@color/pokedex_white"
+                        tools:text="Peso: 120kg"/>
+                    <TextView
+                        android:id="@+id/pokemon_base_exp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="15sp"
+                        android:textColor="@color/pokedex_white"
+                        tools:text="Exp base: 64"/>
+                    <TextView
+                        android:id="@+id/pokemon_types"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
+                        android:textSize="15sp"
+                        android:textColor="@color/pokedex_white"
+                        tools:text="Tipos: poison / grass"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/pokedex_black"
+                android:padding="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/pokedex_white"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/pokemon_moves" />
+                <TextView
+                    android:id="@+id/pokemon_moves"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="15sp"
+                    android:textColor="@color/pokedex_white"
+                    android:layout_marginTop="15dp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -68,20 +164,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_vertical">
 
-            <View
+            <ImageButton
+                android:id="@+id/pokemon_next_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="15dp"
@@ -103,9 +200,10 @@
                 android:background="@drawable/button_round_orange" />
 
         </LinearLayout>
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_gamepad"/>
+            android:src="@drawable/ic_gamepad" />
     </LinearLayout>
 </RelativeLayout>

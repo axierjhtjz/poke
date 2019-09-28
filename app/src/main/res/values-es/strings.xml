@@ -3,4 +3,10 @@
     <string name="http_generic_error">Hubo un problema al realizar la petición http, intentalo de nuevo más tarde</string>
     <!-- menu -->
     <string name="search">buscar</string>
+    <!-- pokemon -->
+    <string name="pokemon_height">Altura: %1$d</string>
+    <string name="pokemon_weight">Peso: %1$d</string>
+    <string name="pokemon_base_ext">Exp base: %1$d</string>
+    <string name="pokemon_types">Tipos: %1$s</string>
+    <string name="pokemon_moves">Movimientos:</string>
 </resources>

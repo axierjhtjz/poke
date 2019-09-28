@@ -13,4 +13,6 @@
     <color name="pokedex_blue_btn">#2E7BFD</color>
     <color name="pokedex_green_btn">#4BFE04</color>
     <color name="pokedex_orange_btn">#FE6306</color>
+    <color name="pokedex_black">#000000</color>
+    <color name="pokedex_white">#FFFFFF</color>
 </resources>
