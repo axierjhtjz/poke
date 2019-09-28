@@ -1,11 +1,13 @@
 package com.axier.poke.view.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.axier.poke.R
@@ -21,7 +23,7 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
     private lateinit var pokemonName: String
     private lateinit var pokemonNameTv: TextView
     private lateinit var pokemonImg: ImageView
-    private lateinit var back: ImageView
+    private lateinit var toolbar: Toolbar
     private lateinit var nextImage: ImageButton
     private lateinit var pokemonHeight: TextView
     private lateinit var pokemonWeight: TextView
@@ -40,14 +42,16 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
 
         findUIElements()
 
-        back.onClick { finish() }
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = pokemonName.prettify()
 
         doGetPokemonRequest(pokemonName)
 
     }
 
     private fun findUIElements() {
-        back = findViewById(R.id.back)
+        toolbar = findViewById(R.id.toolbar)
         pokemonNameTv = findViewById(R.id.pokemon_name)
         pokemonImg = findViewById(R.id.pokemon_image)
         nextImage = findViewById(R.id.pokemon_next_image)
@@ -126,4 +130,12 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
             ).show()
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
