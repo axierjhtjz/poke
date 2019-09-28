@@ -1,6 +1,7 @@
 package com.axier.poke.view.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.axier.poke.R
@@ -41,7 +42,7 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun loadPokemonUIData(pokemon: PokemonApi.Dto.Pokemon) {
-
+        Log.d("POKEMON", pokemon.name)
     }
 
     private fun showToast(stringRes: Int) {

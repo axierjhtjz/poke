@@ -9,4 +9,7 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
     </style>
 
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
 </resources>

@@ -1,9 +1,14 @@
 package com.axier.poke.view.ui
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axier.poke.R
@@ -62,6 +67,37 @@ class MainActivity : AppCompatActivity(), BaseActivity {
         runOnUiThread {
             adapter?.addAll(pokemons = pokemons)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.pokemon_list_menu, menu)
+        // Get the SearchView and set the searchable configuration
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.setIconifiedByDefault(false) // Do not iconify the widget; expand it by default
+
+        val queryTextListener = object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                adapter?.filter!!.filter(newText)
+                adapter?.notifyDataSetChanged()
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+        }
+        searchView.setOnQueryTextListener(queryTextListener)
+        searchView.setOnCloseListener {
+            val imm = getSystemService(
+                Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(searchView.windowToken, 0)
+            false
+        }
+        return true
     }
 
     private fun showToast(stringRes: Int) {

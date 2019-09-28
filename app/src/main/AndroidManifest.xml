@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ui.PokemonDetailActivity"/>
+        <activity android:name=".view.ui.PokemonDetailActivity" android:theme="@style/AppThemeNoActionBar"/>
     </application>
 
 </manifest>

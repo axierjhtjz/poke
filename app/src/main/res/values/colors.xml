@@ -4,4 +4,13 @@
     <color name="colorPrimaryDark">#022ea8</color>
     <color name="colorAccent">#D81B60</color>
     <color name="textColorPrimary">#263238</color>
+
+    <color name="pokedex_red">#DC0A2D</color>
+    <color name="pokedex_grey">#B0B0B0</color>
+    <color name="pokedex_blue_dot">#2E7BFD</color>
+    <color name="pokedex_yellow_dot">#F6F342</color>
+    <color name="pokedex_green_dot">#5FF524</color>
+    <color name="pokedex_blue_btn">#2E7BFD</color>
+    <color name="pokedex_green_btn">#4BFE04</color>
+    <color name="pokedex_orange_btn">#FE6306</color>
 </resources>
