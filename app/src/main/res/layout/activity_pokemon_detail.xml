@@ -71,9 +71,7 @@
                 android:id="@+id/pokemon_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/montserrat"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/PokemonTextViewHeader"
                 android:layout_marginBottom="10dp"
                 tools:text="Bulbasaur" />
 
@@ -100,36 +98,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="15sp"
-                        android:textColor="@color/pokedex_white"
+                        android:textAppearance="@style/PokedexTextViewBody"
                         tools:text="Altura: 120cm"/>
                     <TextView
                         android:id="@+id/pokemon_weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="15sp"
-                        android:textColor="@color/pokedex_white"
+                        android:textAppearance="@style/PokedexTextViewBody"
                         tools:text="Peso: 120kg"/>
                     <TextView
                         android:id="@+id/pokemon_base_exp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="15sp"
-                        android:textColor="@color/pokedex_white"
+                        android:textAppearance="@style/PokedexTextViewBody"
                         tools:text="Exp base: 64"/>
                     <TextView
                         android:id="@+id/pokemon_types"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="15sp"
-                        android:textColor="@color/pokedex_white"
+                        android:textAppearance="@style/PokedexTextViewBody"
                         tools:text="Tipos: poison / grass"/>
                 </LinearLayout>
             </LinearLayout>
@@ -142,19 +132,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/pokedex_white"
+                    android:textAppearance="@style/PokedexTextViewHeader"
                     android:layout_marginTop="15dp"
                     android:text="@string/pokemon_moves" />
                 <TextView
                     android:id="@+id/pokemon_moves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="15sp"
-                    android:textColor="@color/pokedex_white"
+                    android:textAppearance="@style/PokedexTextViewBody"
                     android:layout_marginTop="15dp" />
             </LinearLayout>
         </LinearLayout>

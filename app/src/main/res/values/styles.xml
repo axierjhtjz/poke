@@ -11,5 +11,26 @@
 
     <style name="AppThemeNoActionBar" parent="Theme.AppCompat.NoActionBar">
     </style>
+    <style name="PokemonTextViewHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="PokemonTextViewBody" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="PokedexTextViewHeader" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/pokedex_white</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="PokedexTextViewBody" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/pokedex_white</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
 
 </resources>
