@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.axier.poke.R
-import com.axier.poke.common.mapToEntity
 import com.axier.poke.common.prettify
-import com.axier.poke.data.api.ServiceGenerator
-import com.axier.poke.data.api.pokemon.PokemonApi
 import com.axier.poke.data.entities.pokemon.PokemonEntity
+import com.axier.poke.data.repository.pokemon.PokemonRepositoryImp
 import com.axier.poke.view.BaseActivity
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -62,15 +60,11 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
 
     private fun doGetPokemonRequest(pokemonName: String?) {
         doAsync {
-            val pokemonService = ServiceGenerator.createService(PokemonApi::class.java)
-            val response = pokemonService.getPokemon(pokemonName).execute()
-            if (response.isSuccessful) {
-                val pokemon = response.body()
-                pokemon?.let {
-                    runOnUiThread { loadPokemonUIData(it.mapToEntity()) }
+            when (val pokemon = PokemonRepositoryImp(applicationContext).getPokemon(pokemonName)) {
+                null -> showToast(R.string.http_generic_error)
+                else -> {
+                    runOnUiThread { loadPokemonUIData(pokemon) }
                 }
-            } else {
-                showToast(R.string.http_generic_error)
             }
         }
     }

@@ -12,10 +12,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axier.poke.R
-import com.axier.poke.common.mapToEntity
-import com.axier.poke.data.api.ServiceGenerator
-import com.axier.poke.data.api.pokemon.PokemonApi
 import com.axier.poke.data.entities.pokemon.PokemonEntity
+import com.axier.poke.data.repository.pokemon.PokemonListRepositoryImp
 import com.axier.poke.view.BaseActivity
 import com.axier.poke.view.adapter.PokemonAdapter
 import org.jetbrains.anko.doAsync
@@ -37,9 +35,9 @@ class MainActivity : AppCompatActivity(), BaseActivity {
         pokemonList.setHasFixedSize(true)
 
         adapter = PokemonAdapter(LinkedList(), this, object : PokemonAdapter.OnItemClickListener {
-            override fun onItemClick(pokemonResult: PokemonEntity.PokemonResult) {
+            override fun onItemClick(pokemon: PokemonEntity.PokemonResult) {
                 val intent = Intent(this@MainActivity, PokemonDetailActivity::class.java)
-                intent.putExtra("pokemon_name", pokemonResult.name)
+                intent.putExtra("pokemon_name", pokemon.name)
                 startActivity(intent)
             }
         })
@@ -50,15 +48,13 @@ class MainActivity : AppCompatActivity(), BaseActivity {
 
     private fun doGetPokemonRequest(offset: Int) {
         doAsync {
-            val pokemonService = ServiceGenerator.createService(PokemonApi::class.java)
-            val response = pokemonService.getPokemons(0).execute()
-            if (response.isSuccessful) {
-                val pokemons = response.body()
-                pokemons?.results?.let { it ->
-                    loadAdapterData(it.map { it.mapToEntity() })
+            when (val pokemons = PokemonListRepositoryImp(applicationContext).getPokemons(0)) {
+                null -> {showToast(R.string.http_generic_error)}
+                else -> {
+                    pokemons.results?.let { it ->
+                        loadAdapterData(it)
+                    }
                 }
-            } else {
-                showToast(R.string.http_generic_error)
             }
         }
     }
