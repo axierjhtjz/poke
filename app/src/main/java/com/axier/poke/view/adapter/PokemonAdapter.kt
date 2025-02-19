@@ -74,10 +74,10 @@ class PokemonAdapter (private val elements: LinkedList<PokemonEntity.PokemonResu
                     results.count = elements.size
                     results.values = elements
                 } else {
-                    constraint = constraint.toString().toLowerCase(Locale.getDefault())
+                    constraint = constraint.toString().lowercase(Locale.getDefault())
                     for (i in 0 until elements.size) {
                         val item = elements[i]
-                        if (item.name.toLowerCase(Locale.getDefault()).contains(constraint)) {
+                        if (item.name.lowercase(Locale.getDefault()).contains(constraint)) {
                             filteredArrList.add(item)
                         }
                     }

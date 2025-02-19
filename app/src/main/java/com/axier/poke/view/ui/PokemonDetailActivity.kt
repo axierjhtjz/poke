@@ -15,8 +15,10 @@ import com.axier.poke.common.prettify
 import com.axier.poke.data.entities.pokemon.PokemonEntity
 import com.axier.poke.data.repository.pokemon.PokemonRepositoryImp
 import com.axier.poke.view.BaseActivity
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk27.coroutines.onClick
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
 
@@ -36,15 +38,15 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon_detail)
 
-        intent.extras.let {
+        intent.extras?.let {
             pokemonName = it.getString("pokemon_name", "")
         }
 
         findUIElements()
 
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = pokemonName.prettify()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = pokemonName.prettify()
 
         doGetPokemonRequest(pokemonName)
 
@@ -63,13 +65,18 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun doGetPokemonRequest(pokemonName: String?) {
-        doAsync {
-            when (val pokemon = PokemonRepositoryImp(applicationContext).getPokemon(pokemonName)) {
-                null -> showToast(R.string.http_generic_error)
-                else -> {
-                    runOnUiThread { loadPokemonUIData(pokemon) }
+        val scope = CoroutineScope(Job() + Dispatchers.IO)
+        scope.launch {
+            val pokemon = PokemonRepositoryImp(applicationContext).getPokemon(pokemonName)
+            launch(Dispatchers.Main){
+                when (pokemon) {
+                    null -> showToast(R.string.http_generic_error)
+                    else -> {
+                        loadPokemonUIData(pokemon)
+                    }
                 }
             }
+
         }
     }
 
@@ -91,7 +98,7 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
         if (sprites.isNotEmpty()) {
             loadPokemonImage(sprites[0])
         }
-        nextImage.onClick {
+        nextImage.setOnClickListener {
             if (spritesIndex < sprites.size - 1) {
                 spritesIndex++
             } else {

@@ -16,7 +16,10 @@ import com.axier.poke.data.entities.pokemon.PokemonEntity
 import com.axier.poke.data.repository.pokemon.PokemonListRepositoryImp
 import com.axier.poke.view.BaseActivity
 import com.axier.poke.view.adapter.PokemonAdapter
-import org.jetbrains.anko.doAsync
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity(), BaseActivity {
@@ -47,12 +50,19 @@ class MainActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun doGetPokemonRequest(offset: Int) {
-        doAsync {
-            when (val pokemons = PokemonListRepositoryImp(applicationContext).getPokemons(0)) {
-                null -> {showToast(R.string.http_generic_error)}
-                else -> {
-                    pokemons.results?.let { it ->
-                        loadAdapterData(it)
+        val scope = CoroutineScope(Job() + Dispatchers.IO)
+        scope.launch {
+            val pokemons = PokemonListRepositoryImp(applicationContext).getPokemons(0)
+            launch(Dispatchers.Main) {
+                when (pokemons) {
+                    null -> {
+                        showToast(R.string.http_generic_error)
+                    }
+
+                    else -> {
+                        pokemons.results?.let { it ->
+                            loadAdapterData(it)
+                        }
                     }
                 }
             }
