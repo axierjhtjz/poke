@@ -90,7 +90,7 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
         val moves = pokemon.moves?.map { it.move.name.replace("-", " ") }
         moves?.forEach {
             pokemonMoves.append(it)
-            pokemonMoves.append(System.getProperty("line.separator"))
+            pokemonMoves.append(System.lineSeparator())
         }
 
         var sprites = loadSpritesToList(pokemon.sprites)
@@ -129,13 +129,11 @@ class PokemonDetailActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun showToast(stringRes: Int) {
-        runOnUiThread {
-            Toast.makeText(
-                this@PokemonDetailActivity,
-                stringRes,
-                Toast.LENGTH_LONG
-            ).show()
-        }
+        Toast.makeText(
+            this@PokemonDetailActivity,
+            stringRes,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

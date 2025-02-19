@@ -1,5 +1,6 @@
 package com.axier.poke.view.ui
 
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -70,9 +71,7 @@ class MainActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun loadAdapterData(pokemons: List<PokemonEntity.PokemonResult>) {
-        runOnUiThread {
-            adapter?.addAll(pokemons = pokemons)
-        }
+        adapter?.addAll(pokemons = pokemons)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -86,8 +85,9 @@ class MainActivity : AppCompatActivity(), BaseActivity {
         searchView.setIconifiedByDefault(false) // Do not iconify the widget; expand it by default
 
         val queryTextListener = object : SearchView.OnQueryTextListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onQueryTextChange(newText: String): Boolean {
-                adapter?.filter!!.filter(newText)
+                adapter?.filter?.filter(newText)
                 adapter?.notifyDataSetChanged()
                 return true
             }
@@ -107,12 +107,10 @@ class MainActivity : AppCompatActivity(), BaseActivity {
     }
 
     private fun showToast(stringRes: Int) {
-        runOnUiThread {
-            Toast.makeText(
-                this@MainActivity,
-                stringRes,
-                Toast.LENGTH_LONG
-            ).show()
-        }
+        Toast.makeText(
+            this@MainActivity,
+            stringRes,
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
